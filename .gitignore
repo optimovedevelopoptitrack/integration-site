@@ -56,6 +56,6 @@ typings/
 
 # dotenv environment variables file
 .env
-data/
-data/db/
-db/
+data/**
+data/db/**
+db/**
