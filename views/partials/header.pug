@@ -12,19 +12,19 @@
     .collapse.navbar-collapse
       ul.nav.navbar-nav
         li(class=(title == 'Home') ? 'active' : undefined)
-          a(href='/') Home
+          a(href='/' id='home-link') Home
         li(class=(title == 'API Examples') ? 'active' : undefined)
-          a(href='/api') API Examples
+          a(href='/api' id='api-link') API Examples
         li(class=(title == 'Contact') ? 'active' : undefined)
-          a(href='/contact') Contact
+          a(href='/contact' id='contact-link') Contact
         li
-          a(href='/status') Status
+          a(href='/status' id='status-link') Status
       ul.nav.navbar-nav.navbar-right
         if !user
           li(class=(title == 'Login') ? 'active' : undefined)
-            a(href='/login') Login
+            a(href='/login' id='login-link') Login
           li(class=(title == 'Create Account') ? 'active' : undefined)
-            a(href='/signup') Create Account
+            a(href='/signup'  id='signup-link') Create Account
         else
           li.dropdown(class=(title == 'Account Management') ? 'active' : undefined)
             a.dropdown-toggle(href='#', data-toggle='dropdown')
@@ -36,19 +36,67 @@
               i.caret
             ul.dropdown-menu
               li
-                a(href='/account') My Account
+                a(href='/account' id='account-link') My Account
               li.divider
               li
                 a(href='/logout' id='logout-link') Logout
-    script.
-        function updateLogOut(elem) {
-            console.log(elem);
-            currUrl = elem.srcElement.href;
 
-            window.public_userid = undefined;
-            window.localStorage.removeItem('public_userid');
+        script(type='text/javascript').
+            function updateLogOut(elem) {
+                console.log(elem);
+                currUrl = elem.srcElement.href;
 
-            return true;
-        }
-        var logoutButtonElem = document.getElementById('logout-link');
-        logoutButtonElem.onclick = updateLogOut;
+                window.public_userid = undefined;
+                window.localStorage.removeItem('public_userid');
+
+                return true;
+            };
+
+            var logoutButtonElem = document.getElementById('logout-link');
+            if( logoutButtonElem != null)
+            {
+                logoutButtonElem.onclick = updateLogOut;
+            }
+
+            function callPageVisitEvent(elem) {
+                console.log(elem);
+                currUrl = 'http://www.example.com/' + elem.srcElement.href;
+
+                if (typeof OptimoveSDK != 'undefined') {
+                    OptimoveSDK.OptimoveSDKObj.logPageVisitEvent(currUrl, elem.srcElement.href);
+                }
+
+                return true;
+            }
+
+
+            var homeButtonElem = document.getElementById('home-link');
+            homeButtonElem.onclick = callPageVisitEvent;
+
+            var contactButtonElem = document.getElementById('contact-link');
+            contactButtonElem.onclick = callPageVisitEvent;
+
+            var statusButtonElem = document.getElementById('status-link');
+            statusButtonElem.onclick = callPageVisitEvent;
+
+            var loginButtonElem = document.getElementById('login-link');
+            loginButtonElem.onclick = callPageVisitEvent;
+
+            var signupButtonElem = document.getElementById('signup-link');
+            signupButtonElem.onclick = callPageVisitEvent;
+
+            var accountButtonElem = document.getElementById('account-link');
+
+        script(type = 'text/javascript').
+            if (  accountButtonElem != null )
+            {
+                accountButtonElem.onclick = callPageVisitEvent;
+            }
+
+            var logoutButtonElem = document.getElementById('logout-link');
+            if ( logoutButtonElem != null) {
+                logoutButtonElem.onclick = callPageVisitEvent;
+            }
+
+
+
