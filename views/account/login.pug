@@ -42,22 +42,6 @@ block content
         a.btn.btn-block.btn-instagram.btn-social(href='/auth/instagram')
           i.fa.fa-instagram
           | Sign in with Instagram
-    script.
-        function updateLogin(elem) {
-            console.log(elem);
-            currUrl = elem.srcElement.href;
-            var emailInputElement = document.getElementById('email');
-            var email = emailInputElement.value;
-            window.public_userid = email;
-            window.localStorage.setItem('public_userid', window.public_userid);
-            dataLayer.push({'public_userid': email});
-            dataLayer.push({'event': 'userid_update_event_reg'});
-
-
-          return true;
-        }
-        var loginButtonElem = document.getElementById('login-button');
-        loginButtonElem.onclick = updateLogin;
 
 
 
