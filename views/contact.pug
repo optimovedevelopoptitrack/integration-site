@@ -1,5 +1,3 @@
-extends layout
-
 block content
   .page-header
     h3 Contact Form
@@ -20,11 +18,7 @@ block content
         textarea.form-control(name='message', id='message', rows='7')
     .form-group
       .col-sm-offset-2.col-sm-8
-        button.btn.btn-primary(type='submit')
+        button.btn.btn-primary(type='submit', id="contact-btn")
           i.fa.fa-envelope
           | Send
-    script.
-        script.var userLocal = window.localStorage.getItem('public_userid');
-        if (userLocal != undefined) {
-            window.public_userid = email;
-        }
+

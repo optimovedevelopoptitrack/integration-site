@@ -50,7 +50,7 @@ $(document).ready(() => {
         self.OptimoveSDKObj.setUserId(window.public_userid);
 
 
-        return false;
+        return true;
     };
     var loginButtonElem = document.getElementById('signup-button');
     if(loginButtonElem != null)
@@ -67,12 +67,13 @@ $(document).ready(() => {
         self.OptimoveSDKObj.setUserId(window.public_userid);
 
 
-        return false;
+        return true;
     }
     var loginButtonElem = document.getElementById('login-button');
     if(loginButtonElem != null)
     {
-        loginButtonElem.onclick = updateLogin;
+       // loginButtonElem.onclick = updateLogin;
+	loginButtonElem.addEventListener('click', updateLogin );
     }
 
 
@@ -83,7 +84,7 @@ $(document).ready(() => {
         window.public_userid = null;
         window.localStorage.removeItem('public_userid');
 
-        return false;
+        return true;
     }
     var logoutButtonElem = document.getElementById('logout-link');
     if(logoutButtonElem != null)
