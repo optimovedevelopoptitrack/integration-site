@@ -41,30 +41,6 @@
               li
                 a(href='/logout' id='logout-link') Logout
 
-        script(type='text/javascript').
-            function updateLogOut(elem) {
-                console.log(elem);
 
-                window.public_userid = undefined;
-                window.localStorage.removeItem('public_userid');
 
-                return true;
-            };
-
-            var logoutButtonElem = document.getElementById('logout-link');
-            if( logoutButtonElem != null)
-            {
-                logoutButtonElem.onclick = updateLogOut;
-            }
-
-            function callPageVisitEvent(elem) {
-                console.log(elem);
-                let currUrl = 'http://www.example.com/' + elem.srcElement.pathname;
-
-                if (typeof OptimoveSDK != 'undefined') {
-                    self.OptimoveSDK.OptimoveSDKObj.logPageVisitEvent(currUrl, elem.srcElement.pathname);
-                }
-
-                return true;
-            }
 
