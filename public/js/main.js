@@ -55,7 +55,7 @@ $(document).ready(() => {
     var loginButtonElem = document.getElementById('signup-button');
     if(loginButtonElem != null)
     {
-        loginButtonElem.onclick = updateSignup;
+        loginButtonElem.addEventListener('click', updateSignup );
     }
 
     function updateLogin(elem) {
@@ -72,8 +72,8 @@ $(document).ready(() => {
     var loginButtonElem = document.getElementById('login-button');
     if(loginButtonElem != null)
     {
-       // loginButtonElem.onclick = updateLogin;
-	loginButtonElem.addEventListener('click', updateLogin );
+
+	    loginButtonElem.addEventListener('click', updateLogin );
     }
 
 
@@ -81,15 +81,46 @@ $(document).ready(() => {
 
         var emailInputElement = document.getElementById('email');
         var email = emailInputElement.value;
-        window.public_userid = null;
-        window.localStorage.removeItem('public_userid');
+
 
         return true;
     }
     var logoutButtonElem = document.getElementById('logout-link');
     if(logoutButtonElem != null)
     {
-        logoutButtonElem.onclick = updateLogout;
+        logoutButtonElem.addEventListener('click', updateLogout );
+
+    }
+    function updateAction(elem) {
+
+        self.OptimoveSDKObj.logEvent('Action', { action_name: elem.srcElement.innerText});
+
+        return true;
+    }
+
+    var action1 = document.getElementById('action1-btn');
+    if(action1 != null)
+    {
+
+        action1.addEventListener('click', updateAction );
+    }
+
+    var action2 = document.getElementById('action2-btn');
+    if(action2 != null)
+    {
+        action2.addEventListener('click', updateAction );
+    }
+    var action3 = document.getElementById('action3-btn');
+    if(action3 != null)
+    {
+        action3.addEventListener('click', updateAction );
+    }
+
+    var action4 = document.getElementById('action4-btn');
+    if(action4 != null)
+    {
+        action4.addEventListener('click', updateAction );
     }
 
 });
+
