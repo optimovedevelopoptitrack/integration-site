@@ -89,7 +89,7 @@ $(document).ready(() => {
     }
     function updateAction(elem) {
 
-        self.OptimoveSDKObj.logEvent('Action', { action_name: elem.srcElement.innerText});
+        self.OptimoveSDKObj.logEvent(elem.srcElement.innerText, { action_name: elem.srcElement.innerText});
 
         return true;
     }
