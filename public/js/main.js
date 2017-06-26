@@ -1,9 +1,5 @@
 $(document).ready(() => {
     // Place JavaScript code here...
-    const userLocal = window.localStorage.getItem('public_userid');
-    if (userLocal != null && userLocal != undefined) {
-        window.public_userid = userLocal;
-    }
 
     const loadJSResource = function (resourceURL, callback) {
         if (resourceURL != null) {
@@ -22,7 +18,7 @@ $(document).ready(() => {
     function onLoadSDK() {
         console.log('called onSDKLoad');
 
-        self.OptimoveSDKObj.initialize(null, self.OptimoveSDK.OptimoveSDKConfig, onSDKInitialized);
+        self.OptimoveSDKObj.initialize(null, onSDKInitialized);
     }
     function onSDKInitialized(status) {
         console.log(`testing my call back status = ${status}`);
