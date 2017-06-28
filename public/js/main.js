@@ -34,8 +34,14 @@ $(document).ready(() => {
         self.OptimoveSDKObj.logPageVisitEvent('http://www.example.com' + pageName, pageTitle);
     }
     loadJSResource('https://optimovesdk.firebaseapp.com/sdk.js', onLoadSDK);
-
-
+   
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	
+	 ga('create', 'UA-101846716-1', 'auto');
+  	 ga('send', 'pageview');
 
     function updateSignup(elem) {
 
@@ -45,7 +51,9 @@ $(document).ready(() => {
         window.localStorage.setItem('public_userid', window.public_userid);
         self.OptimoveSDKObj.setUserId(window.public_userid);
 
-
+	ga('create', 'UA-101846716-1', 'auto', {
+  		userId: email 
+		});
         return true;
     };
     var loginButtonElem = document.getElementById('signup-button');
@@ -61,7 +69,11 @@ $(document).ready(() => {
         window.public_userid = email;
         window.localStorage.setItem('public_userid', window.public_userid);
         self.OptimoveSDKObj.setUserId(window.public_userid);
-
+	
+	ga('send', 'event', 'login', email);
+   	ga('create', 'UA-101846716-1', 'auto', {
+                userId: email
+                });
 
         return true;
     }
@@ -76,7 +88,7 @@ $(document).ready(() => {
     function updateLogout(elem) {
 
 
-
+	 ga('send', 'event', 'logout');
         return true;
     }
     var logoutButtonElem = document.getElementById('logout-link');
@@ -88,7 +100,7 @@ $(document).ready(() => {
     function updateAction(elem) {
 
         self.OptimoveSDKObj.logEvent(elem.srcElement.innerText, { action_name: elem.srcElement.innerText});
-
+        ga('send', 'event', 'logEvent', elem.srcElement.innerText);
         return true;
     }
 
@@ -115,6 +127,5 @@ $(document).ready(() => {
     {
         action4.addEventListener('click', updateAction );
     }
-
 });
 
