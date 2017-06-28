@@ -75,8 +75,6 @@ $(document).ready(() => {
 
     function updateLogout(elem) {
 
-        var emailInputElement = document.getElementById('email');
-        var email = emailInputElement.value;
 
 
         return true;
