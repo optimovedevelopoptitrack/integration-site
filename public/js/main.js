@@ -1,5 +1,9 @@
-$(document).ready(() => {
+ $(document).ready(() => {
     // Place JavaScript code here...
+    const userLocal = window.localStorage.getItem('public_userid');
+    if (userLocal != null && userLocal != undefined) {
+        window.public_userid = userLocal;
+    }
 
     const loadJSResource = function (resourceURL, callback) {
         if (resourceURL != null) {
@@ -17,8 +21,8 @@ $(document).ready(() => {
 
     function onLoadSDK() {
         console.log('called onSDKLoad');
-
-        self.OptimoveSDKObj.initialize(null, onSDKInitialized);
+        var token = '/tenantConfigurationToken';
+        self.optimoveSDK.initialize(token,  onSDKInitialized, 'info');
     }
     function onSDKInitialized(status) {
         console.log(`testing my call back status = ${status}`);
@@ -31,17 +35,11 @@ $(document).ready(() => {
         if(pageTitle == "")
             pageTitle = "Home - Hackathon Starter";
 
-        self.OptimoveSDKObj.logPageVisitEvent('http://www.example.com' + pageName, pageTitle);
+        self.optimoveSDK.API.setPageVisit( 'http://www.example.com' + pageName, pageTitle);
     }
     loadJSResource('https://optimovesdk.firebaseapp.com/sdk.js', onLoadSDK);
-   
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	
-	 ga('create', 'UA-101846716-1', 'auto');
-  	 ga('send', 'pageview');
+
+
 
     function updateSignup(elem) {
 
@@ -49,11 +47,9 @@ $(document).ready(() => {
         var email = emailInputElement.value;
         window.public_userid = email;
         window.localStorage.setItem('public_userid', window.public_userid);
-        self.OptimoveSDKObj.setUserId(window.public_userid);
+        self.optimoveSDK.API.setUserId(email);
 
-	ga('create', 'UA-101846716-1', 'auto', {
-  		userId: email 
-		});
+
         return true;
     };
     var loginButtonElem = document.getElementById('signup-button');
@@ -68,12 +64,8 @@ $(document).ready(() => {
         var email = emailInputElement.value;
         window.public_userid = email;
         window.localStorage.setItem('public_userid', window.public_userid);
-        self.OptimoveSDKObj.setUserId(window.public_userid);
-	
-	ga('send', 'event', 'login', email);
-   	ga('create', 'UA-101846716-1', 'auto', {
-                userId: email
-                });
+        self.optimoveSDK.API.setUserId(email);
+
 
         return true;
     }
@@ -87,8 +79,10 @@ $(document).ready(() => {
 
     function updateLogout(elem) {
 
+        var emailInputElement = document.getElementById('email');
+        var email = emailInputElement.value;
 
-	 ga('send', 'event', 'logout');
+
         return true;
     }
     var logoutButtonElem = document.getElementById('logout-link');
@@ -99,8 +93,9 @@ $(document).ready(() => {
     }
     function updateAction(elem) {
 
-        self.OptimoveSDKObj.logEvent(elem.srcElement.innerText, { action_name: elem.srcElement.innerText});
-        ga('send', 'event', 'logEvent', elem.srcElement.innerText);
+
+        var eventName = elem.srcElement.innerText;
+        self.optimoveSDK.API.reportEvent(eventName, { action_name: elem.srcElement.innerText, action_value: 10, action_price: 100});
         return true;
     }
 
@@ -127,5 +122,6 @@ $(document).ready(() => {
     {
         action4.addEventListener('click', updateAction );
     }
+
 });
 
