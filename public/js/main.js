@@ -59,6 +59,8 @@
 	ga('create', 'UA-101846716-1', 'auto', {
   		userId: email 
 		});
+	    
+	ga('set', 'userId', {{email}}); // Set the user ID using signed-in user_id.
 
         return true;
     };
@@ -79,7 +81,7 @@
    	ga('create', 'UA-101846716-1', 'auto', {
                 userId: email
                 });
-
+	ga('set', 'userId', {{email}}); // Set the user ID using signed-in user_id.
 
         return true;
     }
@@ -110,6 +112,10 @@
 
         var eventName = elem.srcElement.innerText;
         self.optimoveSDK.API.reportEvent(eventName, { action_name: elem.srcElement.innerText, action_value: 10, action_price: 100});
+	
+	ga('set', 'dimension1', eventName);
+	ga('set', 'dimension2', 10);
+	ga('set', 'dimension3', 100);
 	ga('send', 'event', 'logEvent', eventName);
 	    
         return true;
