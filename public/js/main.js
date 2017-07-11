@@ -21,9 +21,11 @@
 
     function onLoadSDK() {
         console.log('called onSDKLoad');
-        var token = '/tenantConfigurationToken';
-        self.optimoveSDK.initialize(token,  onSDKInitialized, 'info');
+        var token = '95671c75b9ec486f687f523a7c37a35d';
+        var configVersion = '1.0.0.0';
+        self.optimoveSDK.initialize(token, configVersion, onSDKInitialized, 'info');
     }
+
     function onSDKInitialized(status) {
         console.log(`testing my call back status = ${status}`);
 
@@ -37,7 +39,7 @@
 
         self.optimoveSDK.API.setPageVisit( 'http://www.example.com' + pageName, pageTitle);
     }
-    loadJSResource('https://optimovesdk.firebaseapp.com/sdk.js', onLoadSDK);
+    loadJSResource('https://optimove-web-sdk.firebaseapp.com/sdk/sdk-v1.0.0.js', onLoadSDK);
 	 
    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
