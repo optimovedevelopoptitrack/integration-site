@@ -60,7 +60,7 @@
   		userId: email 
 		});
 	    
-	ga('set', 'userId', {{email}}); // Set the user ID using signed-in user_id.
+	ga('set', 'userId', email); // Set the user ID using signed-in user_id.
 
         return true;
     };
@@ -81,7 +81,7 @@
    	ga('create', 'UA-101846716-1', 'auto', {
                 userId: email
                 });
-	ga('set', 'userId', {{email}}); // Set the user ID using signed-in user_id.
+	ga('set', 'userId',email); // Set the user ID using signed-in user_id.
 
         return true;
     }
