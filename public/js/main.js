@@ -55,12 +55,13 @@
         window.public_userid = email;
         window.localStorage.setItem('public_userid', window.public_userid);
         self.optimoveSDK.API.setUserId(email);
-	ga('send', 'event', 'login', email);
 	ga('create', 'UA-101846716-1', 'auto', {
   		userId: email 
 		});
 	    
 	ga('set', 'userId', email); // Set the user ID using signed-in user_id.
+	ga('send', 'event', 'login', email);
+	
 
         return true;
     };
@@ -77,11 +78,14 @@
         window.public_userid = email;
         window.localStorage.setItem('public_userid', window.public_userid);
         self.optimoveSDK.API.setUserId(email);
-	ga('send', 'event', 'login', email);
-   	ga('create', 'UA-101846716-1', 'auto', {
+	    
+	ga('create', 'UA-101846716-1', 'auto', {
                 userId: email
-                });
-	ga('set', 'userId',email); // Set the user ID using signed-in user_id.
+                });    
+	ga('set', 'userId',email); // Set the user ID using signed-in user_id.    
+	ga('send', 'event', 'login', email);
+   	
+	
 
         return true;
     }
