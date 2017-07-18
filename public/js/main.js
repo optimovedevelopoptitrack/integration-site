@@ -22,7 +22,7 @@
     function onLoadSDK() {
         console.log('called onSDKLoad');
         var token = '95671c75b9ec486f687f523a7c37a35d';
-        var configVersion = '1.0.0.0';
+        var configVersion = '1.0.0';
         self.optimoveSDK.initialize(token, configVersion, onSDKInitialized, 'info');
     }
 
@@ -37,7 +37,7 @@
         if(pageTitle == "")
             pageTitle = "Home - Hackathon Starter";
 
-        self.optimoveSDK.API.setPageVisit( 'http://www.example.com' + pageName, pageTitle);
+        self.optimoveSDK.API.setPageVisit( 'http://www.example.com' + pageName, pageTitle, 'mycategory');
     }
     loadJSResource('https://optimove-web-sdk.firebaseapp.com/sdk/sdk-v1.0.0.js', onLoadSDK);
 	 
