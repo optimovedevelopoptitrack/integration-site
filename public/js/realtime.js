@@ -2,7 +2,7 @@
 
 $(document).ready(function(){
     function setUserEmailEvent(){
-        var email = $("#userEmail").innerText;
+        var email = $("#userEmail")[0].value;
         optimoveSDK.API.reportEvent('Set_email_event', {'email': email} );    
     }
     $("#setUserEmail-btn").on("click",setUserEmailEvent)
