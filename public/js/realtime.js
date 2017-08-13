@@ -1,15 +1,9 @@
 
 function setUserEmailEvent(){
-    var email = document.getElementById('userEmail');
-    optimoveSDK.API.reportEvent('Set_email_event', {'email': email.innerText} );    
+    var email = $("#userEmail").innerText;
+    optimoveSDK.API.reportEvent('Set_email_event', {'email': email} );    
 }
-
-var setUserEmail = document.getElementById('setUserEmail-btn'); // Set user email 
-if(setUserEmail != null)
-{
-alert(10);
-    setUserEmail.addEventListener('click', setUserEmailEvent );
-}
+$("#setUserEmail-btn").on("click",setUserEmailEvent)
 
 var action2 = document.getElementById('action2-btn');
 if(action2 != null)
