@@ -1,14 +1,14 @@
 
-function setUserEmail(){
+function setUserEmailEvent(){
     var email = document.getElementById('userEmail');
     optimoveSDK.API.reportEvent('Set_email_event', {'email': email.innerText} );    
 }
 
-var action1 = document.getElementById('action1-btn'); // Set user email 
-if(action1 != null)
+var setUserEmail = document.getElementById('setUserEmail-btn'); // Set user email 
+if(setUserEmail != null)
 {
-
-    action1.addEventListener('click', setUserEmail );
+alert(10);
+    setUserEmail.addEventListener('click', setUserEmailEvent );
 }
 
 var action2 = document.getElementById('action2-btn');
