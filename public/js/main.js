@@ -1,4 +1,4 @@
- $(document).ready(() => {
+     $(document).ready(() => {
     // Place JavaScript code here...
     const userLocal = window.localStorage.getItem('public_userid');
     if (userLocal != null && userLocal != undefined) {
@@ -39,7 +39,7 @@
 
         self.optimoveSDK.API.setPageVisit( 'http://www.example.com' + pageName, pageTitle, 'mycategory');
     }
-    loadJSResource('http://sdk-cdn.optimove.net/websdk/sdk-v1.0.1.js', onLoadSDK);
+    loadJSResource('http://sdk-cdn.optimove.net/websdk/sdk-v1.0.222.js', onLoadSDK);
 	 
    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -154,4 +154,5 @@
     }
 
 });
+
 
